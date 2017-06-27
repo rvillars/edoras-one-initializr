@@ -132,6 +132,20 @@
           <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.cloudfoundry</groupId>
+        <artifactId>cf-maven-plugin</artifactId>
+        <version>1.0.3</version>
+        <configuration>
+          <skip>true</skip>
+          <target>https://api.run.pivotal.io</target>
+          <username>roger.villars@bluewin.ch</username>
+          <org>bigendian</org>
+          <space>development</space>
+          <appname>edoras-one-initializr</appname>
+          <url>edoras-one-initializr.cfapps.io</url>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 

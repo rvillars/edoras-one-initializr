@@ -1,0 +1,5 @@
+language: java
+env:
+  global:
+    secure: aE16EWAZgnnGqkXkdjVBat9GB52Rgzn5f4sS+vu1OhpGi7KmTJHy3lhrReFB5FUTVVsi0vkF6Foi0kUiOHR+8UDZX1PYeplLsa+r0Cw6vfZ9iEukDTscdpCa2TOWGKZ8rhp+MH6Z6Og3su6xRTC5jcRT8DqxiGV27DhdCo3vmqc=
+script: mvn package cf:push -Dcf.password=$PASSWORD
