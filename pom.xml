@@ -137,7 +137,6 @@
         <artifactId>cf-maven-plugin</artifactId>
         <version>1.0.3</version>
         <configuration>
-          <skip>true</skip>
           <target>https://api.run.pivotal.io</target>
           <username>roger.villars@bluewin.ch</username>
           <org>bigendian</org>
