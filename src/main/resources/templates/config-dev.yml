@@ -1,0 +1,8 @@
+experimental:
+  form:
+    live:
+      preview: true
+
+#transfer:
+#  outgoing:
+#    location: ${project.dir}/src/main/resources/apps

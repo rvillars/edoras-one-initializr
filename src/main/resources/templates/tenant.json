@@ -1,0 +1,24 @@
+{
+  "id": "11111111-1111-1111-1111-111111111111",
+  "name": "{{shortName}}",
+  "accounts": [
+    {
+      "name": "{{shortName}}",
+      "domain": "{{shortName}}.com",
+      "groups": [],
+      "users": [
+        {
+          "firstName": "Template",
+          "lastName": "User",
+          "login": "{{shortName}}",
+          "email": "{{shortName}}.user@{{shortName}}.com",
+          "memberGroups": [
+            "edoras one Modeler",
+            "edoras one Manager"
+          ],
+          "language": "en"
+        }
+      ]
+    }
+  ]
+}

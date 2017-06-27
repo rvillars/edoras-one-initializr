@@ -1,0 +1,137 @@
+# {{shortName}} Project
+
+This file describes the structure and configuration files of the edoras one starter {{shortName}}. 
+
+Feel free to replace or extend this file to fit the projects needs.
+
+## Configuration
+This project is based on [edoras one starter](https://stash.edorasware.com/projects/SOLUTIONS/repos/edoras-one-starter/browse/edoras-one-starter) and therefore provides a number of predefined configuration files. 
+Location for all the configuration files is src/main/resources:
+
+### YAML Property files
+Property files are based on the [YAML Markup language](http://www.yaml.org/spec/1.2/spec.html). 
+YAML files contain the standard property keys but organize them in a hierarchical structure.
+Every property namespace separator will lead to a new tree. E.g.:
+ 
+```properties
+edoras.mail.server.protocol = SMTP
+edoras.mail.server.address = localhost
+edoras.mail.sender = info@edorasware.com
+```
+becomes:
+
+```yaml
+edoras:
+    mail:
+        server:
+            protocol: SMTP
+            address: localhost
+         sender: info@edorasware.com
+``` 
+#### application.yml
+
+The application.yml files contains property values that need to be evaluated before all other property files. It contains for example the project.name property,
+which defines the name of the project itself and therefore the filename of the loaded project specific property files.
+
+The application.yml file is not loaded by a Spring PropertySource but by a PropertySourceInitializer. It can therefore also contain properties that will influence
+how property files will be loaded and that normally would have needed to be added as JVM parameters (like for example active spring profiles).
+
+Example:
+
+```yaml
+project:
+    name: {{shortName}}
+    
+spring:
+  profiles:
+    active: database-h2,integration-development,security-basic
+```
+
+#### {{shortName}}.yml ({shortName}.yml)
+
+The name of this file is given by the project.name property in application.yml (the {shortName} property of the Maven archetype).
+
+This file contains all project specific but environment independent configuration options. Examples could be addon configurations or the help URL.
+
+Most properties don't have to be set because they have appropriate default values. See [one.yml] for an overview of the default property values.
+
+Example:
+```yaml
+edoras:
+  addons:
+    bootapp:
+      apps: My App
+      dataResources: classpath:/import/*.json
+```
+
+#### {{shortName}}-dev.yml ({shortName}-{env}.yml)
+
+The name of this file is given by the project.name property in application.yml (the {shortName} property of the Maven archetype). 
+There can be multiple files. The {env} part is defined by the environment set by an appropriate -Denv={env} JVM parameter (default is 'dev').
+
+These files contains environment specific property values like. e.g.: database connections or the application endpoint. 
+
+Example:
+```yaml
+dataSource:
+  driverClassName: org.postgresql.Driver
+  url: jdbc:postgresql://localhost:5432/edorasone
+  username: edoras
+  password: one
+  validationQuery: select 1
+  maxActive: 50
+  maxWait: 30000
+  
+application:
+  endpoint: http://localhost:8081
+```
+
+#### test-{{shortName}}.yml (test-{shortName}.yml)
+
+The name of this file is given by the project.name property in application.yml (the {shortName} property of the Maven archetype).
+This file contains property values used only for executing tests. It is therefore part of the maven test folder.
+
+Tests inherit all properties from the application.yml file and the {shortName}.yml file but not from the envoronment specific {shortName}-{env}.yml files.
+
+#### one.yml
+
+This file is part of the edoras one starter dependency. It can be found in the root folder of the edoras-one-starter .jar file. It contains appropriate default values
+for all mandatory edoras one properties. All these values can be overridden by the property files mentioned above.
+
+### Spring context files
+
+#### {{shortName}}-context.xml ({shortName}-context.xml)
+
+This Spring context file is automatically loaded by the edoras one Spring application context and allows to define project specific Spring beans and configuration. 
+It is loaded after the edoras one context files so it is possible to override default edoras one beans by reusing their IDs.
+
+#### {{shortName}}-web-context.xml ({shortName}-web-context.xml)
+
+This Spring context file is automatically loaded by the edoras one Spring servlet context and allows to define project specific Spring beans and configuration
+that apply to the edoras one servlet (/rest/ URL)
+
+It is loaded after the edoras one context files so it is possible to override default edoras one beans by reusing their IDs.
+
+#### test-{{shortName}}-context.xml (test-{shortName}-context.xml)
+
+This Spring context file is automatically loaded by the edoras one Spring application context and allows to define project specific Spring beans and configuration. 
+
+It is only loaded when executing Spring based tests.
+
+It is loaded after the edoras one context files so it is possible to override default edoras one beans by reusing their IDs.
+
+### Other configuration files
+
+#### logback.xml
+
+This is the configuration file for the logback logging system.
+The it includes by default a configuration for a console appender. A file appender can be added by uncommenting the appropriate lines.
+The appender configuration provides appropriate default values. They can be overridden or an entirely new configuration can be provided.
+
+#### tenants/{{shortName}}.json ({shortName.}json)
+
+The name of this file is given by the project.name property in application.yml (the {shortName} property of the Maven archetype).
+The files contains the tenant configuration that will be created at database initialisation of edoras one.
+
+
+

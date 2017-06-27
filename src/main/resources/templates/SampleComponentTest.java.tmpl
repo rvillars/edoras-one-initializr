@@ -1,0 +1,42 @@
+package {{packageName}};
+
+import com.edorasware.api.workobject.WorkObject;
+import com.edorasware.api.workobject.WorkObjectBuilder;
+import com.edorasware.api.workobject.WorkObjectService;
+import com.edorasware.commons.core.entity.GlobalId;
+import com.edorasware.gear.core.task.Task;
+import com.edorasware.one.document.viewer.DocumentViewerController;
+import com.edorasware.one.micro.testing.EdorasJUnit4ClassRunner;
+import com.edorasware.one.micro.testing.annotations.EdorasTest;
+import com.edorasware.one.micro.testing.annotations.EdorasTestLogin;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import static org.junit.Assert.assertEquals;
+
+/**
+ * Small test that just checks whether the context is successfully started
+ */
+@EdorasTest
+@EdorasTestLogin(login = "{{shortName}}-admin")
+@RunWith(EdorasJUnit4ClassRunner.class)
+public class SampleComponentTest {
+
+    // You can inject beans from the root context (edoras one context)
+    @Autowired
+    private WorkObjectService workObjectService;
+
+    // You can inject beans from rest service context (edoras one dispatcher servlet context)
+    @Autowired
+    private DocumentViewerController documentViewerController;
+
+    @Test
+    public void addTask() {
+        final String taskName = "taskName";
+        WorkObjectBuilder builder = workObjectService.builder(Task.ENTITY_TYPE);
+        GlobalId taksId = workObjectService.addWorkObject(builder.name(taskName).build()).getGlobalId();
+        WorkObject task = workObjectService.findWorkObject(taksId);
+        assertEquals("The task name must be equal", taskName, task.getName());
+    }
+}
