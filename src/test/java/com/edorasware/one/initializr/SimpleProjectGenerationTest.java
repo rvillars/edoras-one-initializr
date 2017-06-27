@@ -11,6 +11,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.Zip;
 import org.apache.tools.ant.types.ZipFileSet;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -63,13 +64,13 @@ public class SimpleProjectGenerationTest {
 
         System.out.print(printDirectoryTree(dir));
 
-        File outputDir = new File("/Users/rovi/Desktop/Project/edorasone");
-        FileUtils.deleteDirectory(outputDir);
-        FileUtils.moveDirectory(dir, outputDir);
+//        File outputDir = new File("/Users/rovi/Desktop/Project/edorasone");
+//        FileUtils.deleteDirectory(outputDir);
+//        FileUtils.moveDirectory(dir, outputDir);
 
-//        File zip = projectGenerator.createDistributionFile(dir, ".zip");
-//        createZipFile(dir, zip);
-//        Assert.assertTrue(zip.exists());
+        File zip = projectGenerator.createDistributionFile(dir, ".zip");
+        createZipFile(dir, zip);
+        Assert.assertTrue(zip.exists());
     }
 
     private void createZipFile(File dir, File zip) throws IOException {
