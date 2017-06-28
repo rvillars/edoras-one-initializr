@@ -6,16 +6,9 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
-		{{^isRelease}}
-		maven { url "https://repo.spring.io/snapshot" }
-		maven { url "https://repo.spring.io/milestone" }
-		{{/isRelease}}
+		mavenLocal()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		{{^bootOneThreeAvailable}}
-		classpath('io.spring.gradle:dependency-management-plugin:{{dependencyManagementPluginVersion}}')
-		{{/bootOneThreeAvailable}}
 		{{#kotlin}}
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
@@ -27,19 +20,6 @@ apply plugin: '{{language}}'
 {{#kotlin}}
 apply plugin: 'kotlin-spring'
 {{/kotlin}}
-{{#war}}
-apply plugin: 'eclipse-wtp'
-{{/war}}
-{{^war}}
-apply plugin: 'eclipse'
-{{/war}}
-apply plugin: '{{springBootPluginName}}'
-{{^bootOneThreeAvailable}}
-apply plugin: 'io.spring.dependency-management'
-{{/bootOneThreeAvailable}}
-{{#bootTwoZeroAvailable}}
-apply plugin: 'io.spring.dependency-management'
-{{/bootTwoZeroAvailable}}
 {{#war}}
 apply plugin: 'war'
 {{/war}}
@@ -55,6 +35,7 @@ compileTestKotlin {
 
 repositories {
 	mavenCentral()
+	mavenLocal()
 	{{#repositoryValues}}
 	maven { url "{{value.url}}" }
 	{{/repositoryValues}}
@@ -75,6 +56,7 @@ ext {
 
 {{/buildPropertiesVersions.empty}}
 dependencies {
+	compile("com.edorasware.one:edoras-one-starter:${edorasoneVersion}")
 	{{#compileDependencies}}
 	compile('{{groupId}}:{{artifactId}}{{#version}}:{{version}}{{/version}}{{#type}}@{{type}}{{/type}}')
 	{{/compileDependencies}}
@@ -102,9 +84,9 @@ dependencies {
 	{{#providedDependencies}}
 	providedRuntime('{{groupId}}:{{artifactId}}{{#version}}:{{version}}{{/version}}{{#type}}@{{type}}{{/type}}')
 	{{/providedDependencies}}
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile("com.edorasware.one:edoras-one-starter-test:${edorasoneVersion}")
 	{{#testDependencies}}
-	testCompile('{{groupId}}:{{artifactId}}{{#version}}:{{version}}{{/version}}{{#type}}@{{type}}{{/type}}')
+	testCompile("{{groupId}}:{{artifactId}}{{#version}}:{{version}}{{/version}}{{#type}}@{{type}}{{/type}}")
 	{{/testDependencies}}
 }
 {{#hasBoms}}

@@ -105,7 +105,7 @@ public class OfflineInitializrMetadataBuilder {
         return addType("maven-project", "Maven Project", true, "/starter.zip", "maven", "project")
 //				.addType("maven-build", "Maven Build", false, "/pom.xml", "maven", "build")
 //				.addType("gradle-build", "Gradle Build", false, "/build.gradle", "gradle", "build")
-//				.addType("gradle-project", "Gradle Project", false, "/starter.zip", "gradle", "project")
+				.addType("gradle-project", "Gradle Project", false, "/starter.zip", "gradle", "project")
                 ;
     }
 
@@ -185,8 +185,8 @@ public class OfflineInitializrMetadataBuilder {
     }
 
     public OfflineInitializrMetadataBuilder addDefaultEdorasoneVersions() {
-        return addEdorasoneVersion("2.0.0-M5", true)
-//				.addEdorasoneVersion("1.6.5", false)
+        return addEdorasoneVersion("2.0.0-M6-SNAPSHOT", true)
+				.addEdorasoneVersion("1.6.6", false)
                 ;
     }
 

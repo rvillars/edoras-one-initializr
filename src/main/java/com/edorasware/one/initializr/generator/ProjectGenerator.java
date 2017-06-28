@@ -19,9 +19,7 @@ package com.edorasware.one.initializr.generator;
 import com.edorasware.one.initializr.InitializrException;
 import com.edorasware.one.initializr.metadata.*;
 import com.edorasware.one.initializr.metadata.InitializrConfiguration.Env.Maven.ParentPom;
-import com.edorasware.one.initializr.util.TemplateRenderer;
-import com.edorasware.one.initializr.util.Version;
-import com.edorasware.one.initializr.util.VersionProperty;
+import com.edorasware.one.initializr.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanWrapperImpl;
@@ -52,10 +50,6 @@ import java.util.stream.Collectors;
 public class ProjectGenerator {
 
 	private static final Logger log = LoggerFactory.getLogger(ProjectGenerator.class);
-
-	private static final Version VERSION_1_6_5 = Version.parse("1.6.5");
-
-	private static final Version VERSION_2_0_0_M5 = Version.parse("2.0.0-M5");
 
 	@Autowired
 	private ApplicationEventPublisher eventPublisher;
@@ -173,6 +167,7 @@ public class ProjectGenerator {
 		// manually set some properties, seems not to be stable in javascript
 		request.setBaseDir(request.getArtifactId());
 		request.setPackageName(request.getGroupId().concat(".").concat(request.getShortName()));
+		request.setCreateSampleTest(true);
 
 		Map<String, Object> model = resolveModel(request);
 
@@ -219,7 +214,12 @@ public class ProjectGenerator {
 
 		if (request.isCreateSampleTest()) {
 //			setupTestModel(request, model);
-			write(new File(test, "SampleComponentTest." + language), "SampleComponentTest."+language+".tmpl", model);
+			if (isEdorasoneVersion10(request)) {
+				write(new File(test, "SampleComponentTest." + language), "SampleComponentTest16." + language + ".tmpl", model);
+			}
+			if (isEdorasoneVersion20(request)) {
+				write(new File(test, "SampleComponentTest." + language), "SampleComponentTest20." + language + ".tmpl", model);
+			}
 		}
 
 		// src/main/resources
@@ -431,6 +431,10 @@ public class ProjectGenerator {
 		model.put("isJava7", isJavaVersion(request, "1.7"));
 		model.put("isJava8", isJavaVersion(request, "1.8"));
 
+		// edoras one versions
+		model.put("isEdorasOne10", isEdorasoneVersion10(request));
+		model.put("isEdorasOne20", isEdorasoneVersion20(request));
+
 		// Append the project request to the model
 		BeanWrapperImpl bean = new BeanWrapperImpl(request);
 		for (PropertyDescriptor descriptor : bean.getPropertyDescriptors()) {
@@ -520,6 +524,16 @@ public class ProjectGenerator {
 
 	private static boolean isJavaVersion(ProjectRequest request, String version) {
 		return request.getJavaVersion().equals(version);
+	}
+
+	private static boolean isEdorasoneVersion20(ProjectRequest request) {
+		VersionRange edorasone20 = VersionParser.DEFAULT.parseRange("[2.0.0-M0,3.0.0-M0)");
+		return edorasone20.match(Version.parse(request.getEdorasoneVersion()));
+	}
+
+	private static boolean isEdorasoneVersion10(ProjectRequest request) {
+		VersionRange edorasone10 = VersionParser.DEFAULT.parseRange("[1.0.0-M0,2.0.0-M0)");
+		return edorasone10.match(Version.parse(request.getEdorasoneVersion()));
 	}
 
 	private byte[] doGenerateMavenPom(Map<String, Object> model) {

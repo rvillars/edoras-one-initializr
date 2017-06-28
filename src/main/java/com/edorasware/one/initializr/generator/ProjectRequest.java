@@ -217,7 +217,9 @@ public class ProjectRequest extends BasicProjectRequest {
 		}
 		else {
 			buildProperties.getMaven().put("project.build.sourceEncoding", () -> "UTF-8");
-			buildProperties.getVersions().put(new VersionProperty("java.version"),
+			buildProperties.getVersions().put(new VersionProperty("maven.compiler.source"),
+					this::getJavaVersion);
+			buildProperties.getVersions().put(new VersionProperty("maven.compiler.target"),
 					this::getJavaVersion);
 			buildProperties.getVersions().put(new VersionProperty("com.edorasware.one.starter.version"),
 					this::getEdorasoneVersion);

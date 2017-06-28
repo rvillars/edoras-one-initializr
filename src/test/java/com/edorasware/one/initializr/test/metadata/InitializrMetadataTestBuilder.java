@@ -149,7 +149,7 @@ public class InitializrMetadataTestBuilder {
 	}
 
 	public InitializrMetadataTestBuilder addDefaultEdorasoneVersions() {
-		return addEdorasoneVersion("1.6.5", false)
+		return addEdorasoneVersion("1.6.6", false)
 				.addEdorasoneVersion("2.0.0-M5", true);
 	}
 
