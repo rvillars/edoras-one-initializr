@@ -81,19 +81,6 @@ public class DefaultInitializrMetadataProvider implements InitializrMetadataProv
 //		}
 
 		List<DefaultMetadataElement> edorasoneVersions = new ArrayList<>();
-
-//		DefaultMetadataElement element1 = new DefaultMetadataElement();
-//		element1.setId("1.6.5");
-//		element1.setName("1.6.5");
-//		element1.setDefault(false);
-//		edorasoneVersions.add(element1);
-//
-//		DefaultMetadataElement element2 = new DefaultMetadataElement();
-//		element2.setId("2.0.0-M5");
-//		element2.setName("2.0.0-M5");
-//		element2.setDefault(true);
-//		edorasoneVersions.add(element2);
-
 		return edorasoneVersions;
 	}
 }

@@ -182,14 +182,14 @@ public class MainController extends AbstractInitializrController {
 	@RequestMapping(value = "/dependencies", produces = {
 			"application/vnd.initializr.v2.1+json", "application/json" })
 	public ResponseEntity<String> dependenciesV21(
-			@RequestParam(required = false) String bootVersion) {
-		return dependenciesFor(InitializrMetadataVersion.V2_1, bootVersion);
+			@RequestParam(required = false) String edorasoneVersion) {
+		return dependenciesFor(InitializrMetadataVersion.V2_1, edorasoneVersion);
 	}
 
 	private ResponseEntity<String> dependenciesFor(InitializrMetadataVersion version,
-			String bootVersion) {
+			String edorasoneVersion) {
 		InitializrMetadata metadata = metadataProvider.get();
-		Version v = bootVersion != null ? Version.parse(bootVersion)
+		Version v = edorasoneVersion != null ? Version.parse(edorasoneVersion)
 				: Version.parse(metadata.getEdorasoneVersions().getDefault().getId());
 		DependencyMetadata dependencyMetadata = dependencyMetadataProvider.get(metadata,
 				v);
@@ -209,18 +209,6 @@ public class MainController extends AbstractInitializrController {
 		renderHome(model);
 		return "home";
 	}
-
-//	@RequestMapping("/spring")
-//	public String spring() {
-//		String url = metadataProvider.get().createCliDistributionURl("zip");
-//		return "redirect:" + url;
-//	}
-//
-//	@RequestMapping(value = { "/spring.tar.gz", "spring.tgz" })
-//	public String springTgz() {
-//		String url = metadataProvider.get().createCliDistributionURl("tar.gz");
-//		return "redirect:" + url;
-//	}
 
 	@RequestMapping("/pom")
 	@ResponseBody
@@ -249,21 +237,18 @@ public class MainController extends AbstractInitializrController {
 
 		File download = projectGenerator.createDistributionFile(dir, ".zip");
 
-		String wrapperScript = getWrapperScript(request);
-		new File(dir, wrapperScript).setExecutable(true);
+		dir.setExecutable(true);
 		Zip zip = new Zip();
 		zip.setProject(new Project());
 		zip.setDefaultexcludes(false);
 		ZipFileSet set = new ZipFileSet();
 		set.setDir(dir);
 		set.setFileMode("755");
-		set.setIncludes(wrapperScript);
 		set.setDefaultexcludes(false);
 		zip.addFileset(set);
 		set = new ZipFileSet();
 		set.setDir(dir);
 		set.setIncludes("**,");
-		set.setExcludes(wrapperScript);
 		set.setDefaultexcludes(false);
 		zip.addFileset(set);
 		zip.setDestFile(download.getCanonicalFile());
@@ -280,20 +265,17 @@ public class MainController extends AbstractInitializrController {
 
 		File download = projectGenerator.createDistributionFile(dir, ".tar.gz");
 
-		String wrapperScript = getWrapperScript(request);
-		new File(dir, wrapperScript).setExecutable(true);
+		dir.setExecutable(true);
 		Tar zip = new Tar();
 		zip.setProject(new Project());
 		zip.setDefaultexcludes(false);
 		TarFileSet set = zip.createTarFileSet();
 		set.setDir(dir);
 		set.setFileMode("755");
-		set.setIncludes(wrapperScript);
 		set.setDefaultexcludes(false);
 		set = zip.createTarFileSet();
 		set.setDir(dir);
 		set.setIncludes("**,");
-		set.setExcludes(wrapperScript);
 		set.setDefaultexcludes(false);
 		zip.setDestFile(download.getCanonicalFile());
 		Tar.TarCompressionMethod method = new Tar.TarCompressionMethod();
@@ -312,12 +294,6 @@ public class MainController extends AbstractInitializrController {
 		catch (UnsupportedEncodingException e) {
 			throw new IllegalStateException("Cannot encode URL", e);
 		}
-	}
-
-	private static String getWrapperScript(ProjectRequest request) {
-		String script = "gradle".equals(request.getBuild()) ? "gradlew" : "mvnw";
-		return request.getBaseDir() != null
-				? request.getBaseDir() + "/" + script : script;
 	}
 
 	private ResponseEntity<byte[]> upload(File download, File dir, String fileName,

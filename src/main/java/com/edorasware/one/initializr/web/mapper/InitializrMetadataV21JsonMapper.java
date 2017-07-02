@@ -42,7 +42,7 @@ public class InitializrMetadataV21JsonMapper extends InitializrMetadataV2JsonMap
 
 	public InitializrMetadataV21JsonMapper() {
 		this.dependenciesVariables = new TemplateVariables(
-				new TemplateVariable("bootVersion",
+				new TemplateVariable("edorasoneVersion",
 						TemplateVariable.VariableType.REQUEST_PARAM)
 		);
 	}

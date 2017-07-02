@@ -48,7 +48,7 @@ public class InitializrMetadataV2JsonMapper implements InitializrMetadataJsonMap
 						TemplateVariable.VariableType.REQUEST_PARAM),
 				new TemplateVariable("language",
 						TemplateVariable.VariableType.REQUEST_PARAM),
-				new TemplateVariable("bootVersion",
+				new TemplateVariable("edorasoneVersion",
 						TemplateVariable.VariableType.REQUEST_PARAM),
 				new TemplateVariable("groupId",
 						TemplateVariable.VariableType.REQUEST_PARAM),

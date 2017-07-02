@@ -1,44 +1,60 @@
 {
-  "configuration": {
-    "env": {
-      "forceSsl": false
-    }
+  "name": {
+    "id": "name",
+    "type": "TEXT",
+    "description": null,
+    "content": "demo"
   },
-  "dependencies": {
-    "id": "dependencies",
-    "type": "HIERARCHICAL_MULTI_SELECT",
+  "shortName": {
+    "id": "shortName",
+    "type": "TEXT",
+    "description": null,
+    "content": "demo"
+  },
+  "description": {
+    "id": "description",
+    "type": "TEXT",
+    "description": null,
+    "content": "Demo project for edorasone"
+  },
+  "groupId": {
+    "id": "groupId",
+    "type": "TEXT",
+    "description": null,
+    "content": "com.example"
+  },
+  "artifactId": {
+    "id": "artifactId",
+    "type": "TEXT",
+    "description": null,
+    "content": "demo"
+  },
+  "version": {
+    "id": "version",
+    "type": "TEXT",
+    "description": null,
+    "content": "1.0.0-SNAPSHOT"
+  },
+  "packageName": {
+    "id": "packageName",
+    "type": "TEXT",
+    "description": null,
+    "content": "com.example.demo"
+  },
+  "packagings": {
+    "id": "packaging",
+    "type": "SINGLE_SELECT",
     "description": null,
     "content": [
       {
-        "name": "Search",
-        "content": [
-          {
-            "name": "Index",
-            "id": "index",
-            "description": "Index Addon for elasticsearch index configuration",
-            "groupId": "com.edorasware.addons",
-            "artifactId": "edoras-addon-index"
-          }
-        ]
+        "name": "War",
+        "id": "war",
+        "default": true
       },
       {
-        "name": "Operation",
-        "content": [
-          {
-            "name": "Operator Dashboard",
-            "id": "operatorDashboard",
-            "description": "Operator Dashboard for edoras one",
-            "groupId": "com.edorasware.addons",
-            "artifactId": "edoras-addon-index"
-          },
-          {
-            "name": "Logback Plugin",
-            "id": "logbackPlugin",
-            "description": "A logback plugin for the operator dashboard",
-            "groupId": "com.edorasware.addons",
-            "artifactId": "edoras-addon-index"
-          }
-        ]
+        "name": "Jar",
+        "id": "jar",
+        "default": false
       }
     ]
   },
@@ -94,7 +110,7 @@
     ]
   },
   "edorasoneVersions": {
-    "id": "bootVersion",
+    "id": "edorasoneVersion",
     "type": "SINGLE_SELECT",
     "description": null,
     "content": [
@@ -110,37 +126,20 @@
       }
     ]
   },
-  "packagings": {
-    "id": "packaging",
-    "type": "SINGLE_SELECT",
-    "description": null,
-    "content": [
-      {
-        "name": "Jar",
-        "id": "jar",
-        "default": false
-      },
-      {
-        "name": "War",
-        "id": "war",
-        "default": true
-      }
-    ]
-  },
   "javaVersions": {
     "id": "javaVersion",
     "type": "SINGLE_SELECT",
     "description": null,
     "content": [
       {
-        "name": "1.7",
-        "id": "1.7",
-        "default": false
-      },
-      {
         "name": "1.8",
         "id": "1.8",
         "default": true
+      },
+      {
+        "name": "1.7",
+        "id": "1.7",
+        "default": false
       }
     ]
   },
@@ -156,46 +155,42 @@
       }
     ]
   },
-  "name": {
-    "id": "name",
-    "type": "TEXT",
+  "dependencies": {
+    "id": "dependencies",
+    "type": "HIERARCHICAL_MULTI_SELECT",
     "description": null,
-    "content": "demo"
-  },
-  "shortName": {
-    "id": "shortName",
-    "type": "TEXT",
-    "description": null,
-    "content": "demo"
-  },
-  "description": {
-    "id": "description",
-    "type": "TEXT",
-    "description": null,
-    "content": "Demo project for edorasone"
-  },
-  "groupId": {
-    "id": "groupId",
-    "type": "TEXT",
-    "description": null,
-    "content": "com.example"
-  },
-  "artifactId": {
-    "id": "artifactId",
-    "type": "TEXT",
-    "description": null,
-    "content": "demo"
-  },
-  "version": {
-    "id": "version",
-    "type": "TEXT",
-    "description": null,
-    "content": "1.0.0-SNAPSHOT"
-  },
-  "packageName": {
-    "id": "packageName",
-    "type": "TEXT",
-    "description": null,
-    "content": "com.example.demo"
+    "content": [
+      {
+        "name": "Search",
+        "content": [
+          {
+            "name": "Index",
+            "id": "index",
+            "description": "Index Addon for elasticsearch index configuration",
+            "groupId": "com.edorasware.addons",
+            "artifactId": "edoras-addon-index"
+          }
+        ]
+      },
+      {
+        "name": "Operation",
+        "content": [
+          {
+            "name": "Operator Dashboard",
+            "id": "operatorDashboard",
+            "description": "Operator Dashboard for edoras one",
+            "groupId": "com.edorasware.addons",
+            "artifactId": "edoras-addon-index"
+          },
+          {
+            "name": "Logback Plugin",
+            "id": "logbackPlugin",
+            "description": "A logback plugin for the operator dashboard",
+            "groupId": "com.edorasware.addons",
+            "artifactId": "edoras-addon-index"
+          }
+        ]
+      }
+    ]
   }
 }

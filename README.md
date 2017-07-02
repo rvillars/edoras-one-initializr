@@ -7,14 +7,13 @@ Still in early alpha state.
 Using the generated code needs an edoras one license (see http://www.edorasware.com) and access to the appropriate repositories. Don't even try to get it running without.
 
 Already working:
-- Maven project stub creation based on edoras-one-starter 1.6 or 2.0.
-- Gradle project stub creation based on edoras-one-starter 1.6 or 2.0.
-- Artifact coordinates are evaluated.
+- Maven project and pom.xml creation based on edoras-one-starter 1.6 or 2.0.
+- Gradle project and build.xml creation based on edoras-one-starter 1.6 or 2.0.
+- Support for additional "Short Name" property (used for config files, tenant, etc.)
+- Gradle .war and .executable .jar project generation (needs gradle 3.0+)
+- Maven .war and .executable .jar project generation
 - First very unstable draft of addon support.
 - Support for different Java versions.
-- Maven .war and .executable .jar project generation
-- Gradle .war and .executable .jar project generation (needs gradle 3.0+)
-- Support for additional "Short Name" property (used for config files, tenant, etc.) 
 
 Todo:
 - Improve addon dependency support
