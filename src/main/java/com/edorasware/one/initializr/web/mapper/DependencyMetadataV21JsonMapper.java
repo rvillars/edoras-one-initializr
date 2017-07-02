@@ -36,7 +36,7 @@ public class DependencyMetadataV21JsonMapper implements DependencyMetadataJsonMa
 	@Override
 	public String write(DependencyMetadata metadata) {
 		JSONObject json = new JSONObject();
-		json.put("edorasoneVersion", metadata.getEdorasoneVersion().toString());
+		json.put("bootVersion", metadata.getEdorasoneVersion().toString());
 		json.put("dependencies",
 				metadata.getDependencies().entrySet().stream()
 						.collect(Collectors.toMap(Map.Entry::getKey,

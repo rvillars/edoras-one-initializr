@@ -29,25 +29,13 @@
 	</properties>
 
 	<dependencies>
+		{{#war}}
 		<dependency>
 			<groupId>com.edorasware.one</groupId>
 			<artifactId>edoras-one-starter</artifactId>
 			<version>${com.edorasware.one.starter.version}</version>
-			{{^war}}
-			<exclusions>
-				<exclusion>
-					{{#isEdorasOne10}}
-					<groupId>org.eclipse.jetty.orbit</groupId>
-					<artifactId>javax.servlet</artifactId>
-					{{/isEdorasOne10}}
-					{{#isEdorasOne20}}
-					<groupId>de.odysseus.juel</groupId>
-					<artifactId>juel-api</artifactId>
-					{{/isEdorasOne20}}
-				</exclusion>
-			</exclusions>
-			{{/war}}
 		</dependency>
+		{{/war}}
 		{{^war}}
 		<dependency>
 			<groupId>com.edorasware.one</groupId>

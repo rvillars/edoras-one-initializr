@@ -165,7 +165,7 @@ public class ProjectGenerator {
 
 	protected File doGenerateProjectStructure(ProjectRequest request) {
 		// manually set some properties, seems not to be stable in javascript
-		request.setBaseDir(request.getArtifactId());
+//		request.setBaseDir(request.getArtifactId());
 		request.setPackageName(request.getGroupId().concat(".").concat(request.getShortName()));
 		request.setCreateSampleTest(true);
 

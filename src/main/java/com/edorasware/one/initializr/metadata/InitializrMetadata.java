@@ -39,7 +39,8 @@ public class InitializrMetadata {
 
 	private final TypeCapability types = new TypeCapability();
 
-	private final SingleSelectCapability edorasoneVersions = new SingleSelectCapability("edorasoneVersion",
+	// has to be named boot version for spring boot IDE support (e.g. intellij)
+	private final SingleSelectCapability edorasoneVersions = new SingleSelectCapability("bootVersion",
 			"edoras one Version", "edoras one version");
 
 	private final SingleSelectCapability packagings = new SingleSelectCapability("packaging",

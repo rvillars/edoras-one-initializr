@@ -1,0 +1,201 @@
+{
+  "configuration": {
+    "env": {
+      "forceSsl": false
+    }
+  },
+  "dependencies": {
+    "id": "dependencies",
+    "type": "HIERARCHICAL_MULTI_SELECT",
+    "description": null,
+    "content": [
+      {
+        "name": "Search",
+        "content": [
+          {
+            "name": "Index",
+            "id": "index",
+            "description": "Index Addon for elasticsearch index configuration",
+            "groupId": "com.edorasware.addons",
+            "artifactId": "edoras-addon-index"
+          }
+        ]
+      },
+      {
+        "name": "Operation",
+        "content": [
+          {
+            "name": "Operator Dashboard",
+            "id": "operatorDashboard",
+            "description": "Operator Dashboard for edoras one",
+            "groupId": "com.edorasware.addons",
+            "artifactId": "edoras-addon-index"
+          },
+          {
+            "name": "Logback Plugin",
+            "id": "logbackPlugin",
+            "description": "A logback plugin for the operator dashboard",
+            "groupId": "com.edorasware.addons",
+            "artifactId": "edoras-addon-index"
+          }
+        ]
+      }
+    ]
+  },
+  "types": {
+    "id": "type",
+    "type": "ACTION",
+    "description": null,
+    "content": [
+      {
+        "name": "Maven Project",
+        "id": "maven-project",
+        "description": "Generate a Maven based project archive",
+        "action": "/starter.zip",
+        "tags": {
+          "build": "maven",
+          "format": "project"
+        },
+        "default": true
+      },
+      {
+        "name": "Maven Build",
+        "id": "maven-build",
+        "description": "Generate a Maven pom.xml",
+        "action": "/pom.xml",
+        "tags": {
+          "build": "maven",
+          "format": "build"
+        },
+        "default": false
+      },
+      {
+        "name": "Gradle Project",
+        "id": "gradle-project",
+        "description": "Generate a Gradle based project archive",
+        "action": "/starter.zip",
+        "tags": {
+          "build": "gradle",
+          "format": "project"
+        },
+        "default": false
+      },
+      {
+        "name": "Gradle Build",
+        "id": "gradle-build",
+        "description": "Generate a Gradle build file",
+        "action": "/build.gradle",
+        "tags": {
+          "build": "gradle",
+          "format": "build"
+        },
+        "default": false
+      }
+    ]
+  },
+  "edorasoneVersions": {
+    "id": "bootVersion",
+    "type": "SINGLE_SELECT",
+    "description": null,
+    "content": [
+      {
+        "name": "2.0.0-M5-SNAPSHOT",
+        "id": "2.0.0-M5-SNAPSHOT",
+        "default": true
+      },
+      {
+        "name": "1.6.6",
+        "id": "1.6.6",
+        "default": false
+      }
+    ]
+  },
+  "packagings": {
+    "id": "packaging",
+    "type": "SINGLE_SELECT",
+    "description": null,
+    "content": [
+      {
+        "name": "Jar",
+        "id": "jar",
+        "default": false
+      },
+      {
+        "name": "War",
+        "id": "war",
+        "default": true
+      }
+    ]
+  },
+  "javaVersions": {
+    "id": "javaVersion",
+    "type": "SINGLE_SELECT",
+    "description": null,
+    "content": [
+      {
+        "name": "1.7",
+        "id": "1.7",
+        "default": false
+      },
+      {
+        "name": "1.8",
+        "id": "1.8",
+        "default": true
+      }
+    ]
+  },
+  "languages": {
+    "id": "language",
+    "type": "SINGLE_SELECT",
+    "description": null,
+    "content": [
+      {
+        "name": "Java",
+        "id": "java",
+        "default": true
+      }
+    ]
+  },
+  "name": {
+    "id": "name",
+    "type": "TEXT",
+    "description": null,
+    "content": "demo"
+  },
+  "shortName": {
+    "id": "shortName",
+    "type": "TEXT",
+    "description": null,
+    "content": "demo"
+  },
+  "description": {
+    "id": "description",
+    "type": "TEXT",
+    "description": null,
+    "content": "Demo project for edorasone"
+  },
+  "groupId": {
+    "id": "groupId",
+    "type": "TEXT",
+    "description": null,
+    "content": "com.example"
+  },
+  "artifactId": {
+    "id": "artifactId",
+    "type": "TEXT",
+    "description": null,
+    "content": "demo"
+  },
+  "version": {
+    "id": "version",
+    "type": "TEXT",
+    "description": null,
+    "content": "1.0.0-SNAPSHOT"
+  },
+  "packageName": {
+    "id": "packageName",
+    "type": "TEXT",
+    "description": null,
+    "content": "com.example.demo"
+  }
+}

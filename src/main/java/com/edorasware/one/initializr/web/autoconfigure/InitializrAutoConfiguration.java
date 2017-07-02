@@ -37,6 +37,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.servlet.resource.ResourceUrlProvider;
 
 import javax.cache.configuration.MutableConfiguration;
@@ -128,7 +129,11 @@ public class InitializrAutoConfiguration {
 //		InitializrMetadata metadata = InitializrMetadataBuilder
 //				.fromInitializrProperties(properties).build();
 
-		InitializrMetadata metadata = OfflineInitializrMetadataBuilder.withDefaults().build();
+		InitializrMetadata metadata = InitializrMetadataBuilder.create()
+				.withInitializrMetadata(new ClassPathResource("metadata/defaults.json"))
+				.build();
+
+//		InitializrMetadata metadata = OfflineInitializrMetadataBuilder.withDefaults().build();
 		return new SimpleInitializrMetadataProvider(metadata);
 
 //		return new DefaultInitializrMetadataProvider(metadata, new RestTemplate());

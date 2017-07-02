@@ -5,10 +5,14 @@ buildscript {
 		{{/buildPropertiesGradle}}
 	}
 	repositories {
+		jcenter()
 		mavenCentral()
 		mavenLocal()
 	}
 	dependencies {
+		{{^war}}
+		classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+		{{/war}}
 		{{#kotlin}}
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
@@ -22,6 +26,9 @@ apply plugin: 'kotlin-spring'
 {{/kotlin}}
 {{#war}}
 apply plugin: 'war'
+{{/war}}
+{{^war}}
+apply plugin: 'com.github.johnrengelman.shadow'
 {{/war}}
 
 version = '{{version}}'
@@ -53,10 +60,28 @@ ext {
 	{{key}} = '{{value}}'
 {{/buildPropertiesVersions}}
 }
-
 {{/buildPropertiesVersions.empty}}
+{{^war}}
+shadowJar {
+	zip64 true
+	classifier = 'executable'
+	mergeServiceFiles {
+		path = 'META-INF/services'
+		include 'META-INF/spring.schemas'
+		include 'META-INF/spring.handlers'
+	}
+	manifest {
+		attributes 'Main-Class': 'launch.Main'
+	}
+}
+{{/war}}
 dependencies {
+	{{#war}}
 	compile("com.edorasware.one:edoras-one-starter:${edorasoneVersion}")
+	{{/war}}
+	{{^war}}
+    compile("com.edorasware.one:edoras-one-starter-embedded:${edorasoneVersion}")
+    {{/war}}
 	{{#compileDependencies}}
 	compile('{{groupId}}:{{artifactId}}{{#version}}:{{version}}{{/version}}{{#type}}@{{type}}{{/type}}')
 	{{/compileDependencies}}

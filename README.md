@@ -13,14 +13,13 @@ Already working:
 - First very unstable draft of addon support.
 - Support for different Java versions.
 - Maven .war and .executable .jar project generation
-- Gradle .war project generation
+- Gradle .war and .executable .jar project generation (needs gradle 3.0+)
 - Support for additional "Short Name" property (used for config files, tenant, etc.) 
 
 Todo:
-- Support for Gradle executable .jar Build
-- Support for Groovy / Kotlin
-- Metadata from Repository/Addon Marketplace
-- IntelliJ Integration
+- Improve addon dependency support
 - Config generation for addons
+- Metadata from Repository/Addon Marketplace
 - Code cleanup
 - Fixing a lot of bugs
+- Support for Groovy / Kotlin

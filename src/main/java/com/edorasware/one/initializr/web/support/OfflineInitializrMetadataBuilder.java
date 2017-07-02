@@ -102,18 +102,19 @@ public class OfflineInitializrMetadataBuilder {
     }
 
     public OfflineInitializrMetadataBuilder addDefaultTypes() {
-        return addType("maven-project", "Maven Project", true, "/starter.zip", "maven", "project")
-//				.addType("maven-build", "Maven Build", false, "/pom.xml", "maven", "build")
-//				.addType("gradle-build", "Gradle Build", false, "/build.gradle", "gradle", "build")
-				.addType("gradle-project", "Gradle Project", false, "/starter.zip", "gradle", "project")
+        return addType("maven-project", "Maven Project", "Generate a Maven based project archive", true, "/starter.zip", "maven", "project")
+				.addType("maven-build", "Maven Build","Generate a Maven pom.xml", false, "/pom.xml", "maven", "build")
+				.addType("gradle-build", "Gradle Build","Generate a Gradle based project archive", false, "/build.gradle", "gradle", "build")
+				.addType("gradle-project", "Gradle Project","Generate a Gradle build file", false, "/starter.zip", "gradle", "project")
                 ;
     }
 
-    public OfflineInitializrMetadataBuilder addType(String id, String name, boolean defaultValue,
+    public OfflineInitializrMetadataBuilder addType(String id, String name, String description, boolean defaultValue,
                                                     String action, String build, String format) {
         Type type = new Type();
         type.setId(id);
         type.setName(name);
+        type.setDescription(description);
         type.setDefault(defaultValue);
         type.setAction(action);
         if (StringUtils.hasText(build)) {

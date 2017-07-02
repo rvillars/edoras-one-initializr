@@ -57,6 +57,7 @@ public class InitializrMetadataV2JsonMapper implements InitializrMetadataJsonMap
 				new TemplateVariable("version",
 						TemplateVariable.VariableType.REQUEST_PARAM),
 				new TemplateVariable("name", TemplateVariable.VariableType.REQUEST_PARAM),
+				new TemplateVariable("shortName", TemplateVariable.VariableType.REQUEST_PARAM),
 				new TemplateVariable("description",
 						TemplateVariable.VariableType.REQUEST_PARAM),
 				new TemplateVariable("packageName",
@@ -77,6 +78,7 @@ public class InitializrMetadataV2JsonMapper implements InitializrMetadataJsonMap
 		text(delegate, metadata.getArtifactId());
 		text(delegate, metadata.getVersion());
 		text(delegate, metadata.getName());
+		text(delegate, metadata.getShortName());
 		text(delegate, metadata.getDescription());
 		text(delegate, metadata.getPackageName());
 		return delegate.toString();
