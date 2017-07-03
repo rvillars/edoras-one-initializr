@@ -168,17 +168,7 @@
             "id": "index",
             "description": "Index Addon for elasticsearch index configuration",
             "groupId": "com.edorasware.addons",
-            "artifactId": "edoras-addon-index",
-            "mappings": [
-              {
-                "versionRange": "[1, 2)",
-                "version": "1.0.0"
-              },
-              {
-                "versionRange": "[2, 3)",
-                "version": "2.0.0"
-              }
-            ]
+            "artifactId": "edoras-addon-index"
           }
         ]
       },
