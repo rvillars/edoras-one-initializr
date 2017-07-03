@@ -79,11 +79,10 @@ public class InitializrAutoConfiguration {
 	@ConditionalOnMissingBean
 	public MainController initializrMainController(
 			InitializrMetadataProvider metadataProvider,
-			TemplateRenderer templateRenderer,
 			ResourceUrlProvider resourceUrlProvider,
 			ProjectGenerator projectGenerator,
 			DependencyMetadataProvider dependencyMetadataProvider) {
-		return new MainController(metadataProvider, templateRenderer, resourceUrlProvider
+		return new MainController(metadataProvider, resourceUrlProvider
 				, projectGenerator, dependencyMetadataProvider);
 	}
 

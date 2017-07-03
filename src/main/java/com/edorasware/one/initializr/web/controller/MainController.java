@@ -16,19 +16,16 @@
 
 package com.edorasware.one.initializr.web.controller;
 
-import com.samskivert.mustache.Mustache;
 import com.edorasware.one.initializr.generator.BasicProjectRequest;
-import com.edorasware.one.initializr.generator.CommandLineHelpGenerator;
 import com.edorasware.one.initializr.generator.ProjectGenerator;
 import com.edorasware.one.initializr.generator.ProjectRequest;
 import com.edorasware.one.initializr.metadata.DependencyMetadata;
 import com.edorasware.one.initializr.metadata.DependencyMetadataProvider;
 import com.edorasware.one.initializr.metadata.InitializrMetadata;
 import com.edorasware.one.initializr.metadata.InitializrMetadataProvider;
-import com.edorasware.one.initializr.util.Agent;
-import com.edorasware.one.initializr.util.TemplateRenderer;
 import com.edorasware.one.initializr.util.Version;
 import com.edorasware.one.initializr.web.mapper.*;
+import com.samskivert.mustache.Mustache;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.Tar;
 import org.apache.tools.ant.taskdefs.Zip;
@@ -37,10 +34,8 @@ import org.apache.tools.ant.types.ZipFileSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.CacheControl;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StreamUtils;
@@ -55,8 +50,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import static com.edorasware.one.initializr.util.Agent.AgentId.*;
 
 /**
  * The main initializr controller provides access to the configured metadata and serves as
@@ -75,16 +68,14 @@ public class MainController extends AbstractInitializrController {
 
 	private final ProjectGenerator projectGenerator;
 	private final DependencyMetadataProvider dependencyMetadataProvider;
-	private final CommandLineHelpGenerator commandLineHelpGenerator;
 
 	public MainController(InitializrMetadataProvider metadataProvider,
-                          TemplateRenderer templateRenderer, ResourceUrlProvider resourceUrlProvider,
+                          ResourceUrlProvider resourceUrlProvider,
                           ProjectGenerator projectGenerator,
                           DependencyMetadataProvider dependencyMetadataProvider) {
 		super(metadataProvider, resourceUrlProvider);
 		this.projectGenerator = projectGenerator;
 		this.dependencyMetadataProvider = dependencyMetadataProvider;
-		this.commandLineHelpGenerator = new CommandLineHelpGenerator(templateRenderer);
 	}
 
 	@ModelAttribute
@@ -105,38 +96,6 @@ public class MainController extends AbstractInitializrController {
 	@RequestMapping(value = "/metadata/client")
 	public String client() {
 		return "redirect:/";
-	}
-
-	@RequestMapping(value = "/", produces = "text/plain")
-	public ResponseEntity<String> serviceCapabilitiesText(
-			@RequestHeader(value = HttpHeaders.USER_AGENT, required = false) String userAgent) {
-		String appUrl = generateAppUrl();
-		InitializrMetadata metadata = metadataProvider.get();
-
-		BodyBuilder builder = ResponseEntity.ok().contentType(MediaType.TEXT_PLAIN);
-		if (userAgent != null) {
-			Agent agent = Agent.fromUserAgent(userAgent);
-			if (agent != null) {
-				if (CURL.equals(agent.getId())) {
-					String content = commandLineHelpGenerator
-							.generateCurlCapabilities(metadata, appUrl);
-					return builder.eTag(createUniqueId(content)).body(content);
-				}
-				if (HTTPIE.equals(agent.getId())) {
-					String content = commandLineHelpGenerator
-							.generateHttpieCapabilities(metadata, appUrl);
-					return builder.eTag(createUniqueId(content)).body(content);
-				}
-				if (SPRING_BOOT_CLI.equals(agent.getId())) {
-					String content = commandLineHelpGenerator
-							.generateSpringBootCliCapabilities(metadata, appUrl);
-					return builder.eTag(createUniqueId(content)).body(content);
-				}
-			}
-		}
-		String content = commandLineHelpGenerator.generateGenericCapabilities(metadata,
-				appUrl);
-		return builder.eTag(createUniqueId(content)).body(content);
 	}
 
 	@RequestMapping(value = "/", produces = "application/hal+json")

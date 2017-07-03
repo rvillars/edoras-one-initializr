@@ -143,18 +143,12 @@ public class InitializrConfiguration {
 		/**
 		 * The url of the repository servicing distribution bundle.
 		 */
-		private String artifactRepository = "https://repo.spring.io/release/";
+		private String artifactRepository = "https://repo.edorasware.com/list/libs-release-local/";
 
 		/**
 		 * The metadata url of the edoras one project.
 		 */
-		private String edorasoneMetadataUrl = "https://spring.io/project_metadata/spring-boot";
-
-		/**
-		 * Tracking code for Google Analytics. Only enabled if a value is explicitly
-		 * provided.
-		 */
-		private String googleAnalyticsTrackingCode;
+		private String edorasoneMetadataUrl = "none";
 
 		/**
 		 * The application name to use if none could be generated.
@@ -173,12 +167,12 @@ public class InitializrConfiguration {
 		 * default package name should be used instead.
 		 */
 		private List<String> invalidPackageNames = new ArrayList<>(
-				Collections.singletonList("org.springframework"));
+				Collections.singletonList("com.edorasware.one"));
 
 		/**
 		 * Force SSL support. When enabled, any access using http generate https links.
 		 */
-		private boolean forceSsl = true;
+		private boolean forceSsl = false;
 
 		/**
 		 * The "BillOfMaterials" that are referenced in this instance, identified by an
@@ -217,14 +211,6 @@ public class InitializrConfiguration {
 
 		public void setEdorasoneMetadataUrl(String edorasoneMetadataUrl) {
 			this.edorasoneMetadataUrl = edorasoneMetadataUrl;
-		}
-
-		public String getGoogleAnalyticsTrackingCode() {
-			return googleAnalyticsTrackingCode;
-		}
-
-		public void setGoogleAnalyticsTrackingCode(String googleAnalyticsTrackingCode) {
-			this.googleAnalyticsTrackingCode = googleAnalyticsTrackingCode;
 		}
 
 		public String getFallbackApplicationName() {
@@ -298,7 +284,6 @@ public class InitializrConfiguration {
 		public void merge(Env other) {
 			artifactRepository = other.artifactRepository;
 			edorasoneMetadataUrl = other.edorasoneMetadataUrl;
-			googleAnalyticsTrackingCode = other.googleAnalyticsTrackingCode;
 			fallbackApplicationName = other.fallbackApplicationName;
 			invalidApplicationNames = other.invalidApplicationNames;
 			forceSsl = other.forceSsl;

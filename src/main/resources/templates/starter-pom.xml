@@ -43,6 +43,7 @@
 			<version>${com.edorasware.one.starter.version}</version>
 		</dependency>
 		{{/war}}
+
 		{{#compileDependencies}}
 		<dependency>
 			<groupId>{{groupId}}</groupId>

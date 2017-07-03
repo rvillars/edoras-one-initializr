@@ -115,8 +115,8 @@
     "description": null,
     "content": [
       {
-        "name": "2.0.0-M5-SNAPSHOT",
-        "id": "2.0.0-M5-SNAPSHOT",
+        "name": "2.0.0-M6-SNAPSHOT",
+        "id": "2.0.0-M6-SNAPSHOT",
         "default": true
       },
       {
@@ -168,26 +168,55 @@
             "id": "index",
             "description": "Index Addon for elasticsearch index configuration",
             "groupId": "com.edorasware.addons",
-            "artifactId": "edoras-addon-index"
+            "artifactId": "edoras-addon-index",
+            "mappings": [
+              {
+                "versionRange": "[1, 2)",
+                "version": "1.0.0"
+              },
+              {
+                "versionRange": "[2, 3)",
+                "version": "2.0.0"
+              }
+            ]
           }
         ]
       },
       {
-        "name": "Operation",
+        "name": "Data",
         "content": [
           {
-            "name": "Operator Dashboard",
-            "id": "operatorDashboard",
-            "description": "Operator Dashboard for edoras one",
+            "name": "Master Data Management",
+            "id": "mdm",
+            "description": "Able to handle different sources of master data",
             "groupId": "com.edorasware.addons",
-            "artifactId": "edoras-addon-index"
+            "artifactId": "edoras-addon-data-mdm"
           },
           {
-            "name": "Logback Plugin",
-            "id": "logbackPlugin",
-            "description": "A logback plugin for the operator dashboard",
+            "name": "External System Integration",
+            "id": "esi",
+            "description": "Able to easily define and handle external system functions",
             "groupId": "com.edorasware.addons",
-            "artifactId": "edoras-addon-index"
+            "artifactId": "edoras-addon-data-esi"
+          },
+          {
+            "name": "Bootapp",
+            "id": "bootapp",
+            "description": "Initializes tenants with predefined data",
+            "groupId": "com.edorasware.addons",
+            "artifactId": "edoras-addon-bootapp"
+          }
+        ]
+      },
+      {
+        "name": "Documents",
+        "content": [
+          {
+            "name": "Enterprise Content Management",
+            "id": "ecm",
+            "description": "Enhanced Document and Content management",
+            "groupId": "com.edorasware.addons",
+            "artifactId": "edoras-addon-ecm"
           }
         ]
       }
