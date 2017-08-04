@@ -22,3 +22,11 @@ Todo:
 - Code cleanup
 - Fixing a lot of bugs
 - Support for Groovy / Kotlin
+
+## Running form Command Line
+
+Its also possible to run the initializr from a command line using the curl command e.g. like this:
+
+```bash
+curl http://edoras-one-initializr.cfapps.io/starter.tgz -d artifactId=my-app -d groupId=com.edorasware.app -d shortName=myApp | tar -zvx
+```
