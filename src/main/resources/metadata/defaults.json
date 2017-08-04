@@ -115,9 +115,14 @@
     "description": null,
     "content": [
       {
-        "name": "2.0.0-M6-SNAPSHOT",
-        "id": "2.0.0-M6-SNAPSHOT",
+        "name": "2.0.0-M6",
+        "id": "2.0.0-M6",
         "default": true
+      },
+      {
+        "name": "1.6.8",
+        "id": "1.6.8",
+        "default": false
       },
       {
         "name": "1.6.6",

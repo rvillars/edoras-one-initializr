@@ -1,9 +1,9 @@
 package {{packageName}};
 
+import com.edorasware.api.base.WorkObjectId;
 import com.edorasware.api.workobject.WorkObject;
 import com.edorasware.api.workobject.WorkObjectBuilder;
 import com.edorasware.api.workobject.WorkObjectService;
-import com.edorasware.commons.core.entity.GlobalId;
 import com.edorasware.gear.core.task.Task;
 import com.edorasware.one.document.viewer.DocumentViewerController;
 import com.edorasware.one.micro.testing.EdorasJUnit4ClassRunner;
@@ -35,8 +35,8 @@ public class SampleComponentTest {
     public void addTask() {
         final String taskName = "taskName";
         WorkObjectBuilder builder = workObjectService.builder(Task.ENTITY_TYPE);
-        GlobalId taksId = workObjectService.addWorkObject(builder.name(taskName).build()).getGlobalId();
-        WorkObject task = workObjectService.findWorkObject(taksId);
+        WorkObjectId taksId = workObjectService.addWorkObject(builder.name(taskName).build()).getId();
+        WorkObject task = workObjectService.findWorkObject(taksId).get();
         assertEquals("The task name must be equal", taskName, task.getName());
     }
 }
