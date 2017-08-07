@@ -115,11 +115,6 @@
     "description": null,
     "content": [
       {
-        "name": "2.0.0-M6-1-SNAPSHOT",
-        "id": "2.0.0-M6-1-SNAPSHOT",
-        "default": true
-      },
-      {
         "name": "2.0.0-M6",
         "id": "2.0.0-M6",
         "default": true
