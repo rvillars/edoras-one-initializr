@@ -8,7 +8,7 @@
   "shortName": {
     "id": "shortName",
     "type": "TEXT",
-    "description": null,
+    "description": "Used to name the config files (short, camelCase text - no spaces)",
     "content": "demo"
   },
   "description": {

@@ -60,34 +60,40 @@
                         <label for="groupId" class="control-label">{{groupId.title}}</label>
                         <input tabindex="4" id="groupId" class="form-control" type="text" value="{{groupId.content}}"
                                name="groupId" required>
+                        <p class="help-block">{{groupId.description}}</p>
                     </div>
                     <div class="form-group artifactid-form-group">
                         <label for="artifactId" class="control-label">{{artifactId.title}}</label>
                         <input tabindex="5" id="artifactId" class="form-control" type="text"
                                value="{{artifactId.content}}"
                                name="artifactId" required>
+                        <p class="help-block">{{artifactId.description}}</p>
                     </div>
                     <div class="form-group shortName-form-group">
                         <label for="shortName" class="control-label">{{shortName.title}}</label>
                         <input tabindex="5" id="shortName" class="form-control" type="text"
                                value="{{shortName.content}}"
                                name="shortName" required>
+                        <p class="help-block">{{shortName.description}}</p>
                     </div>
                     <div class="form-group full hidden name-form-group">
                         <label for="name" class="control-label">{{name.title}}</label>
                         <input tabindex="6" id="name" class="form-control" type="text" value="{{name.content}}"
                                name="name">
+                        <p class="help-block">{{name.description}}</p>
                     </div>
                     <div class="form-group full hidden description-form-group">
                         <label for="description" class="control-label">{{description.title}}</label>
                         <input tabindex="7" id="description" class="form-control" type="text"
                                value="{{description.content}}" name="description">
+                        <p class="help-block">{{description.description}}</p>
                     </div>
                     <div class="form-group full hidden packagename-form-group">
                         <label for="packageName" class="control-label">{{packageName.title}}</label>
                         <input tabindex="8" id="packageName" class="form-control" type="text"
                                value="{{packageName.content}}"
                                name="packageName">
+                        <p class="help-block">{{packageName.description}}</p>
                     </div>
                     <div class="form-group full hidden packaging-form-group">
                         <label for="packaging" class="control-label">{{packagings.title}}</label>
@@ -96,6 +102,7 @@
                             <option value="{{id}}"{{#default}} selected{{/default}}>{{name}}</option>
                             {{/packagings.content}}
                         </select>
+                        <p class="help-block">{{packagings.description}}</p>
                     </div>
                     <div class="form-group full hidden javaversion-form-group">
                         <label for="javaVersion" class="control-label">{{javaVersions.title}}</label>
@@ -104,6 +111,7 @@
                             <option value="{{id}}"{{#default}} selected{{/default}}>{{name}}</option>
                             {{/javaVersions.content}}
                         </select>
+                        <p class="help-block">{{javaVersions.description}}</p>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">

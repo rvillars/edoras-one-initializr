@@ -33,10 +33,12 @@ curl http://edoras-one-initializr.cfapps.io/starter.tgz -d artifactId=my-app -d 
 
 ## Change Log
 
-### TODO Date
+### 08-07-2017
 - Updated VersionParser to allow Starter-Patch versions (Versioning scheme: ProductMajor.ProductMinor.ProductPatch-ProductQualifier-StarterPatch-StarterQualifier) 
 - Corrected README.md template (minor formatting and spelling)
 - Made the basic artifact metadata fields (artifactId, groupId and shortname) required.
+- Added field description as help-block to html (e.g. for explanation of shortName)
+- Added change log to README.md
 
 ### 08-06-2017
 - Added versions 1.6.8 and 2.0.0-M6
