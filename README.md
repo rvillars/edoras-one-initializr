@@ -38,6 +38,7 @@ curl http://edoras-one-initializr.cfapps.io/starter.tgz -d artifactId=my-app -d 
 - Corrected README.md template (minor formatting and spelling)
 - Made the basic artifact metadata fields (artifactId, groupId and shortname) required.
 - Added field description as help-block to html (e.g. for explanation of shortName)
+- Added field validation to shortName field.
 - Added change log to README.md
 
 ### 08-06-2017
